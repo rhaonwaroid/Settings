@@ -1,0 +1,42 @@
+#!/bin/sh -e
+#
+# rc.local
+#
+# This script is executed at the end of each multiuser runlevel.
+# Make sure that the script will "exit 0" on success or any other
+# value on error.
+#
+# In order to enable or disable this script just change the execution
+# bits.
+#
+# By default this script does nothing.
+
+# Print the IP address
+_IP=$(hostname -I) || true
+if [ "$_IP" ]; then
+  printf "My IP address is %s\n" "$_IP"
+fi
+
+#------------------------------
+# Start New Waroid Server
+#------------------------------
+_START_NEW_WAROID_SERVER=0
+if test $_START_NEW_WAROID_SERVER -eq 1
+then
+	_ROBOT_ID=0
+	_ROBOT_TYPE="CRAB"
+	_GAME_SERVER_IP="none"
+	_DEV=0
+
+	printf "starting... new waroid server\n" $_NEW_WAROID_SERVER_DEV
+	printf "robot id = %d\n" $_ROBOT_ID
+	printf "robot type = %s\n" $_ROBOT_TYPE
+	printf "game server = %s\n" $_GAME_SERVER_IP
+	printf "dev = %d\n" $_DEV
+
+	sudo /usr/local/bin/NewWaroidServer $_ROBOT_ID $_ROBOT_TYPE $_GAME_SERVER_IP $_DEV &
+fi
+
+#------------------------------
+
+exit 0
