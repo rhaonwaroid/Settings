@@ -22,7 +22,7 @@
 	-[A] mkdir Work && cd Work
 	-[A] git clone https://github.com/rhaonwaroid/Settings.git
 	-[A] cd settings/script
-	-[A] ./intialize.sh
+	-[A] ./initialize.sh
 	-[A] sudo ./wifi.sh <station | ap>
 	-[A] sudo reboot
 	
