@@ -28,17 +28,17 @@ cp ../0/etc/network/interfaces /etc/network/interfaces
 if [ "$_WIFI_MODE" = "station" ]
 then
 	cat >> /etc/network/interfaces << EOF
-allow-hotplug wlan1
-iface wlan1 inet manual
+allow-hotplug wlan0
+iface wlan0 inet manual
 wpa-roam /etc/wpa_supplicant/wpa_supplicant.conf
-iface robot inet dhcp
+iface control inet dhcp
 EOF
 	
 	systemctl disable dnsmasq
 else
 	cat >> /etc/network/interfaces << EOF
-allow-hotplug wlan1
-iface wlan1 inet static
+allow-hotplug wlan0
+iface wlan0 inet static
 address 10.1.1.1
 netmask 255.255.255.0
 network 10.1.1.0

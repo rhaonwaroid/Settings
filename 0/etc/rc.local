@@ -18,23 +18,19 @@ if [ "$_IP" ]; then
 fi
 
 #------------------------------
-# Start New Waroid Server
+# Start Waroid Single
 #------------------------------
-_START_NEW_WAROID_SERVER=0
-if test $_START_NEW_WAROID_SERVER -eq 1
+_START_WAROID_SINGLE=0
+if test $_START_WAROID_SINGLE -eq 1
 then
-	_ROBOT_ID=0
 	_ROBOT_TYPE="CRAB"
-	_GAME_SERVER_IP="none"
 	_DEV=0
 
-	printf "starting... new waroid server\n" $_NEW_WAROID_SERVER_DEV
-	printf "robot id = %d\n" $_ROBOT_ID
+	printf "starting... waroid single\n"
 	printf "robot type = %s\n" $_ROBOT_TYPE
-	printf "game server = %s\n" $_GAME_SERVER_IP
 	printf "dev = %d\n" $_DEV
 
-	sudo /usr/local/bin/NewWaroidServer $_ROBOT_ID $_ROBOT_TYPE $_GAME_SERVER_IP $_DEV &
+	sudo /usr/local/bin/WaroidSingle $_ROBOT_TYPE $_DEV &
 fi
 
 #------------------------------
