@@ -34,6 +34,7 @@ then
 fi
 
 cp ../0/etc/network/interfaces /etc/network/interfaces
+cp ../0/etc/dnsmasq.conf /etc/dnsmasq.conf
 
 if [ "$_WIFI_MODE" = "station" ]
 then
@@ -67,6 +68,11 @@ network 10.1.1.0
 broadcast 10.1.1.255
 hostapd /etc/hostapd/hostapd24g.conf
 EOF
+
+		cat >> /etc/dnsmasq.conf << EOF
+interface=wlan0
+dhcp-range=10.1.1.11,10.1.1.19,255.255.255.0,24h
+EOF
 	else
 		cat >> /etc/network/interfaces << EOF
 allow-hotplug wlan1
@@ -76,6 +82,11 @@ netmask 255.255.255.0
 network 10.1.1.0
 broadcast 10.1.1.255
 hostapd /etc/hostapd/hostapd5g.conf
+EOF
+
+		cat >> /etc/dnsmasq.conf << EOF
+interface=wlan1
+dhcp-range=10.1.1.11,10.1.1.19,255.255.255.0,24h
 EOF
 	fi
 	
