@@ -17,7 +17,7 @@ fi
 _WIFI_MODE="$1"
 _WIFI_SPEED="$2"
 
-if [ "$_WIFI_MODE" != "station" -a "$_WIFI_MODE" != "ap"]
+if [ "$_WIFI_MODE" != "station" -a "$_WIFI_MODE" != "ap" ]
 then
 	echo "$_WIFI_MODE is unknown."
 	echo "Usage:"
@@ -25,9 +25,9 @@ then
 	exit
 fi
 
-if [ "$_WIFI_SPEED" != "2.4g" -a "$_WIFI_SPEED" != "5g"]
+if [ "$_WIFI_SPEED" != "2.4g" -a "$_WIFI_SPEED" != "5g" ]
 then
-	echo "$_WIFI_MODE is unknown."
+	echo "$_WIFI_SPEED is unknown."
 	echo "Usage:"
 	echo "sudo $0 <station|ap>" "<2.4g|5g>"
 	exit
@@ -48,7 +48,7 @@ EOF
 	else
 		cat >> /etc/network/interfaces << EOF
 allow-hotplug wlan1
-iface wlan0 inet manual
+iface wlan1 inet manual
 wpa-roam /etc/wpa_supplicant/wpa_supplicant.conf
 iface robot inet dhcp
 EOF
@@ -69,7 +69,7 @@ hostapd /etc/hostapd/hostapd24g.conf
 EOF
 	else
 		cat >> /etc/network/interfaces << EOF
-allow-hotplug wlan0
+allow-hotplug wlan1
 iface wlan1 inet static
 address 10.1.1.1
 netmask 255.255.255.0
