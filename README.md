@@ -52,3 +52,8 @@
 	-[A] sudo truncate -s0 /var/log/waroid.log
 	-[A] sudo truncate -s0 /var/log/syslog
 	
+#------------------------------
+#	Download 8822bu driver
+#------------------------------
+	-[A] wget http://downloads.fars-robotics.net/wifi-drivers/8822bu-drivers/8822bu-4.14.34-1110.tar.gz
+	
