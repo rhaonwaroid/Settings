@@ -71,7 +71,7 @@ EOF
 
 		cat >> /etc/dnsmasq.conf << EOF
 interface=wlan0
-dhcp-range=10.1.1.11,10.1.1.19,255.255.255.0,24h
+dhcp-range=10.1.1.2,10.1.1.254,255.255.255.0,6h
 EOF
 	else
 		cat >> /etc/network/interfaces << EOF
@@ -86,7 +86,7 @@ EOF
 
 		cat >> /etc/dnsmasq.conf << EOF
 interface=wlan1
-dhcp-range=10.1.1.11,10.1.1.19,255.255.255.0,24h
+dhcp-range=10.1.1.2,10.1.1.254,255.255.255.0,6h
 EOF
 	fi
 	
