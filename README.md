@@ -53,7 +53,31 @@
 	-[A] sudo truncate -s0 /var/log/syslog
 	
 #------------------------------
-#	Download 8822bu driver
+#	Install Wifi driver
 #------------------------------
-	-[A] wget http://downloads.fars-robotics.net/wifi-drivers/8822bu-drivers/8822bu-4.14.34-1110.tar.gz
+	-[A] cd Work/Settings/driver
+	-[0] tar xzf 8822bu-4.14.34-1110.tar.gz (EDIMAX EW 7822ULC) (downlaod from www.fars-robotics.net)
+	-[0] tar xzf 8812au-4.14.34-1110.tar.gz (NEXT 510AC mini)	(downlaod from www.fars-robotics.net)
+	-[0] tar xzf 8821cu-4.14.34-1110.tar.gz (AC600 from driver)	(build)
+	-[A] ./install.sh	
 	
+#------------------------------
+#	Mode Switch AC600
+#------------------------------
+	-[A] lsusb
+	-[A] if 0bda:1a2b then sudo usb_modeswitch -KW -v 0bda -p 1a2b
+	-[A] lsusb
+
+#------------------------------
+#	Build AC600 from driver
+#------------------------------
+	-[A] sudo apt-get install raspberrypi-kernel-headers
+	-[A] git clone https://github.com/whitebatman2/rtl8821cu.git
+	-[A] cd rtl8821
+	-[A] vi Makefile
+		-> EXTRA_CFLAGS += -Wno-date-time
+		-> CONFIG_PLATFORM_I386_PC = n
+		-> CONFIG_PLATFORM_ARM_RPI = y
+		-> CONFIG_PLATFORM_ARM_RPI3 = n
+	-[A] make
+	-[A] sudo make install
