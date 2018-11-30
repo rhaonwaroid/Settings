@@ -11,6 +11,7 @@ sudo cp ../0/etc/network/interfaces /etc/network/interfaces
 sudo cp ../0/etc/syslog-ng/syslog-ng.conf /etc/syslog-ng/syslog-ng.conf
 sudo cp ../0/etc/dnsmasq.conf /etc/dnsmasq.conf
 sudo cp ../0/etc/rc.local /etc/rc.local
+sudo cp ../0/lib/udev/rules.d/40-usb_modeswitch.rules /lib/udev/rules.d/40-usb_modeswitch.rules
 
 sudo touch /var/log/waroid.log
 
