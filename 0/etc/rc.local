@@ -17,6 +17,19 @@ if [ "$_IP" ]; then
   printf "My IP address is %s\n" "$_IP"
 fi
 
+_HOSTNAME=$(hostname)
+if [ $_HOSTNAME = "WARBOT" ]; then
+	_CPUID=$(awk '/Serial/ {print $3}' /proc/cpuinfo | sed 's/^0*//')
+	
+	sed -i -E 's/^127.0.1.1.*/127.0.1.1\t'"WARBOT_$_CPUID"'/' /etc/hosts
+	hostnamectl set-hostname WARBOT_$_CPUID
+	sed -i -E 's/^ssid=.*/ssid='"WARBOT_$_CPUID"'/' /etc/hostapd/hostapd24g.conf
+	sed -i -E 's/^ssid=.*/ssid='"WARBOT5G_$_CPUID"'/' /etc/hostapd/hostapd5g.conf
+	reboot
+else
+	printf "My Hostname is %s\n" "$_HOSTNAME"
+fi
+
 #------------------------------
 # Start Waroid Single
 #------------------------------
